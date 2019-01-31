@@ -10,6 +10,10 @@ class ArtistDetail extends HTMLElement {
   // it create `<artist-detail>' elements with the correct slots.
   constructor() {
     super();
+    const template = document.getElementById('artist-detail-template');
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.appendChild(template.content.cloneNode(true));
+    console.log('constructed');
   }
 
   // Bonus Exercise:

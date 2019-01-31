@@ -14,8 +14,8 @@
  *
  * 4. Create the following prototype functions:
  *
- *   add: Sums the stack then adds the sum to the calculator's value
- *   mul: Same as `add', except use multiplication
+ *   add: Sums the stack then adds the sum to the calculator's value -- then empties the stack
+ *   mul: Sums the stack then multiplies the sum by the calculator's value -- then empties the stack
  *   get: Returns the value of the current calculator value
  *
  * Example usage:
@@ -27,3 +27,77 @@
  *                // Stack is now empty.
  *   c.get();     // returns 20
  */
+
+function Calculator(value = 0) {
+	this.stack = [];
+	this.value = value;
+}
+
+Calculator.prototype.push = function (value) {
+	this.stack.push(value);
+}
+
+Calculator.prototype.add = function () {
+	this.value += this.stack.reduce((total, current) => {
+		return total + current;
+	}, 0);
+
+	// empties the stack!
+	this.stack = [];
+
+	return this.value;
+}
+
+Calculator.prototype.mul = function () {
+	this.value *= this.stack.reduce((total, current) => {
+		return total + current;
+	}, 0);
+
+	// empties the stack!
+	this.stack = [];
+
+	return this.value;
+}
+
+Calculator.prototype.get = function () {
+	return this.value;
+}
+
+// converted to a class...
+
+// class Calculator {
+// 	constructor(value = 0) {
+// 		this.value = value;
+// 		this.stack = [];
+// 	}
+
+// 	push(value) {
+// 		this.stack.push(value);
+// 	}
+
+// 	add() {
+// 		this.value += this.stack.reduce((total, current) => {
+// 			return total + current;
+// 		}, 0);
+
+// 		// empties the stack!
+// 		this.stack = [];
+
+// 		return this.value;
+// 	}
+
+// 	mul() {
+// 		this.value *= this.stack.reduce((total, current) => {
+// 			return total + current;
+// 		}, 0);
+
+// 		// empties the stack!
+// 		this.stack = [];
+
+// 		return this.value;
+// 	}
+
+// 	get() {
+// 		return this.value;
+// 	}
+// }

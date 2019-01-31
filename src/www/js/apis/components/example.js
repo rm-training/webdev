@@ -22,8 +22,8 @@ class HelloCustomized extends HTMLParagraphElement {
 }
 
 customElements.define("hello-customized",
-                      HelloCustomized,
-                      {extends: "p"});
+  HelloCustomized,
+  { extends: "p" });
 // :>>
 
 /******************************************************************************/
@@ -33,7 +33,7 @@ class HelloShadow extends HTMLElement {
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({mode: "open"})
+    const shadowRoot = this.attachShadow({ mode: "open" })
 
     const style = document.createElement("style");
     style.textContent = "p { color: red; }";
@@ -56,9 +56,15 @@ class HelloTemplate extends HTMLElement {
     super();
 
     const template = document.getElementById("with-name");
-    const shadowRoot = this.attachShadow({mode: "open"})
+    const shadowRoot = this.attachShadow({ mode: "open" })
 
     shadowRoot.appendChild(template.content.cloneNode(true));
+
+    // confused me... cloneNode vs importNode -- not much difference these days
+    // importNode clones from "another document root"
+    // cloneNode clones but leaves the document root untouched
+    // in the past appending a node from another DOM root would throw warnings
+    //shadowRoot.appendChild(document.importNode(template.content, true));
   }
 }
 

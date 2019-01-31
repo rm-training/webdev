@@ -14,7 +14,12 @@
 //   http://localhost:3000/js/fetch/
 //
 function getArtists(id) {
+  let path = '/api/artists';
+  if (id) {
+    path += '/' + id;
+  }
 
-  // Your code goes here.
-
+  return fetch(path).then((response) => {
+    return response.json();
+  });
 }

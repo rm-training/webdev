@@ -64,4 +64,30 @@
  * flags so they are in the correct order in the bucket.
  */
 
-// Your code here.
+const bucket = document.getElementById('bucket');
+const bucketList = bucket.querySelector('ul');
+
+const flag1 = document.querySelector('.main li.foo');
+let newLi = document.createElement('li');
+newLi.appendChild(flag1);
+bucketList.appendChild(newLi);
+
+const flag2 = document.querySelector('article a span');
+newLi = document.createElement('li');
+newLi.appendChild(flag2);
+bucketList.appendChild(newLi);
+
+const flag3 = document.querySelector('.footer div div div div:first-child');
+newLi = document.createElement('li');
+newLi.appendChild(flag3);
+bucketList.appendChild(newLi);
+
+const flag4 = document.querySelector('#article-3 p span');
+newLi = document.createElement('li');
+newLi.appendChild(flag4);
+bucketList.appendChild(newLi);
+
+const flag5 = document.querySelector('#article-3 p:nth-child(4)');
+newLi = document.createElement('li');
+newLi.appendChild(flag5);
+bucketList.appendChild(newLi);

@@ -47,4 +47,33 @@
  *
  * Make sure your tests still pass.
  */
-Hosts = undefined;
+Hosts = (function () {
+	let hosts = {};
+
+	return {
+		add(name, address) {
+			if (!hosts.hasOwnProperty(name)) {
+				hosts[name] = [];
+			}
+			hosts[name].push(address);
+		},
+		lookupByName(name) {
+			if (hosts.hasOwnProperty(name)) {
+				return hosts[name];
+			}
+			return [];
+		},
+		lookupByIP(address) {
+			let matches = [];
+			Object.getOwnPropertyNames(hosts).forEach((name) => {
+				if (hosts[name].includes(address)) {
+					matches.push(name);
+				}
+			});
+			return matches;
+		},
+		clear() {
+			hosts = {};
+		}
+	}
+})();

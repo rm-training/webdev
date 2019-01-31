@@ -17,6 +17,17 @@
 //
 function closure() {
 
-  // Your code here.
+  let temps = [];
+
+  return {
+    setTemp(temp) {
+      if (temp >= 0 && temp <= 100) {
+        temps.push(temp);
+      }
+    },
+    getTemp() {
+      return temps[temps.length - 1];
+    }
+  }
 
 }

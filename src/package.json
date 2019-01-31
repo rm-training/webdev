@@ -7,15 +7,18 @@
   "author": "Peter J. Jones",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "@babel/polyfill": "^7.0.0",
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
     "@babel/plugin-proposal-decorators": "^7.2.0",
+    "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.2.0",
     "mockapie": "git://github.com/pjones/mockapie.git",
-    "nightwatch": "^0.9.8"
+    "nightwatch": "^0.9.8",
+    "ws": "^6.1.3"
   },
   "scripts": {
+    "chat": "node bin/chat-server.js",
+    "start": "node bin/server.js",
     "babel": "babel babel --out-dir babel-out --presets=@babel/env"
   },
   "repository": {
