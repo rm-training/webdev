@@ -3,7 +3,6 @@
 // Utilize the premade template and websockets to build a basic chat page
 //
 //
-
 class MessageSystem {
   emptyMessages() {
     this.messagesUl.innerHTML = "";
@@ -47,6 +46,7 @@ class MessageSystem {
 
     // message list
     this.messagesUl = document.querySelector("#messages ul");
+    this.messagesUl.innerHTML = "";
 
     connection.onopen = () => {
       console.log("connected");
