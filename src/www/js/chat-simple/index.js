@@ -10,10 +10,11 @@ class MessageSystem {
 
   storeMessage(message) {
     let messageStorage = JSON.parse(localStorage.getItem("messages"));
-    if (messageStorage && messageStorage.push) {
+    if (messageStorage && Array.isArray(messageStorage)) {
       messageStorage.push(message);
     } else {
       messageStorage = [];
+      messageStorage.push(message);
     }
     localStorage.setItem("messages", JSON.stringify(messageStorage));
   }
@@ -55,8 +56,8 @@ class MessageSystem {
       this.renderFromStore();
     };
 
-    connection.onmessage = message => {
-      const data = JSON.parse(message.data);
+    connection.onmessage = event => {
+      const data = JSON.parse(event.data);
       this.addMessage(data);
     };
 
