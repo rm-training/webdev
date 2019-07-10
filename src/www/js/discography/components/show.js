@@ -1,5 +1,4 @@
 class ArtistDetail extends HTMLElement {
-
   // Exercise 3:
   //
   // Create a template for displaying a single artist.  The template
@@ -11,17 +10,9 @@ class ArtistDetail extends HTMLElement {
   constructor() {
     super();
 
-    // get the template
-    const template = document.getElementById('artist-detail');
-
-    // clone the template
-    const content = template.content.cloneNode(true);
-
-    // create the shadow
-    const shadow = this.attachShadow({ mode: 'open' });
-
-    // attach to the shadow
-    shadow.append(content);
+    this.attachShadow({ mode: "open" });
+    const template = document.getElementById("artist-detail-template");
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   // Bonus Exercise:
@@ -34,6 +25,34 @@ class ArtistDetail extends HTMLElement {
   //
   // For an example, see: http://localhost:3000/js/demo/
   connectedCallback() {
+    const modal = document.createElement("div");
+    modal.style.position = "fixed";
+    modal.style.top = "25%";
+    modal.style.left = "25%";
+    modal.style.width = "50vw";
+    modal.style.height = "50vh";
+    modal.style.border = "1px solid #000";
+    modal.style.display = "none";
+    modal.style.backgroundColor = "white";
+    modal.style.overflow = "scroll";
+
+    this.shadowRoot.appendChild(modal);
+
+    this.shadowRoot.firstElementChild.addEventListener("click", function() {
+      fetch("/api/artists/1/albums")
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          modal.style.display = "block";
+          console.log(data);
+          data.forEach(el => {
+            const item = document.createElement("p");
+            item.innerHTML = `${el.name} through ${el.label}`;
+            modal.appendChild(item);
+          });
+        });
+    });
   }
 }
 

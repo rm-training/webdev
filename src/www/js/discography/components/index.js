@@ -1,5 +1,4 @@
 class ArtistList extends HTMLElement {
-
   // Exercise 1:
   //
   // Create a `<template>' in the index.html file that will be used to
@@ -11,15 +10,9 @@ class ArtistList extends HTMLElement {
   constructor() {
     super();
 
-    // get template
-    const template = document.getElementById('artist-list');
-
-    // clone it
-    const content = template.content.cloneNode(true);
-
-    // attach it into the shadow dom
-    var shadow = this.attachShadow({ mode: 'open' });
-    shadow.append(content);
+    const template = document.getElementById("artist-list-template");
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   // Exercise 2:
@@ -28,29 +21,41 @@ class ArtistList extends HTMLElement {
   // template's `<ul>' element.  Start simple by just inserting the
   // the name of the artist.
   connectedCallback() {
-    const ulEl = this.shadowRoot.querySelector('ul');
+    const ul = this.shadowRoot.querySelector("ul");
+    fetch("/api/artists")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
 
-    fetch('/api/artists').then((response) => {
-      return response.json();
-    }, (error) => {
-      console.log('something went wrong with the request');
-    }).then((data) => {
-      let newContent = '';
+        throw new Error(response.statusText);
+      })
+      .then(data => {
+        data.forEach(artist => {
+          const li = document.createElement("li");
+          const artistDetail = document.createElement("artist-detail");
 
-      data.forEach((el) => {
-        newContent += '<li>' + el.name + '</li>';
+          const slot1 = document.createElement("span");
+          slot1.setAttribute("slot", "name");
+          slot1.innerHTML = artist.name;
 
-        // exercise #3
-        // create the "arist details" component
-        const details = document.createElement('artist-detail');
-        details.innerHTML = `<span slot="name">${el.name}</span><span slot="year">${el.year}</span>`;
-        this.shadowRoot.append(details);
+          const slot2 = document.createElement("span");
+          slot2.setAttribute("slot", "year");
+          slot2.innerHTML = artist.formation_year;
 
-        // todo - probably better to generate the "view" component in the "li"?
+          artistDetail.appendChild(slot1);
+          artistDetail.appendChild(slot2);
+
+          li.appendChild(artistDetail);
+          ul.appendChild(li);
+
+          // slot links are "live"
+          // if we modify the slotted value, it will update in the utilized template
+          // setTimeout(() => {
+          //   slot1.innerHTML = "bump";
+          // }, 5000);
+        });
       });
-
-      ulEl.innerHTML = newContent;
-    });
   }
 }
 
