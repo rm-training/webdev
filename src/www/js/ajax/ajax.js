@@ -24,7 +24,7 @@ Ajax = (function () {
     //   return response.json();
     // });
 
-    response = await fetch(url, options);
+    const response = await fetch(url, options);
 
     return response.json();
   };
