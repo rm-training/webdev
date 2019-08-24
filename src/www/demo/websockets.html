@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1>Websockets</h1>
+
+    <ul id="trades">
+    </ul>
+
+    <script>
+      const subscribeMsg = {
+          "event": "bts:subscribe",
+          "data": {
+              "channel": "live_trades_btcusd"
+          }
+      };
+
+      const tradeList = document.getElementById('trades');
+
+      conn = new WebSocket("wss://ws.bitstamp.net");
+
+      conn.onopen = function () {
+        conn.send(JSON.stringify(subscribeMsg));
+      }
+
+      conn.onmessage = function (evt) {
+          response = JSON.parse(evt.data);
+
+          console.log(response);
+
+          switch (response.event) {
+              case 'trade': {
+                  console.log('Trade', response.data);
+
+                  let newLi = document.createElement('li');
+                  newLi.innerHTML = `Bought ${response.data.amount} BTC @ $${response.data.price}`;
+                  tradeList.appendChild(newLi);
+                  break;
+              }
+              case 'bts:request_reconnect': {
+                  // @todo - try to reconnect all over again
+                  break;
+              }
+          }
+
+      };
+
+      /**
+       * In case of unexpected close event, try to reconnect.
+       */
+      conn.onclose = function () {
+          console.log('Websocket connection closed');
+          initWebsocket();
+      };
+
+    </script>
+</body>
+
+</html>

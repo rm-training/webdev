@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style type="text/css">
+      .button1 {
+        display: block;
+        margin: 0 0 1rem 0;
+      }
+      .nav1 {
+        display: block;
+        margin: 0 0 1rem 0;
+      }
+      .nav1 ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        width: 100%;
+      }
+      .nav1 ul li {
+        display: block;
+        border: 1px solid #c9c9c9;
+        padding: 1rem;
+        border-radius: 5px;
+        flex-grow: 1;
+      }
+      .nav1 ul li:hover {
+        background-color: #ccc;
+        border-color: #000;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Events</h1>
+
+    <button class="button1">Button 1</button>
+
+    <p>I am a paragraph with a <a class="link1" href="#">Link 1</a></p>
+
+    <nav class="nav1">
+      <ul>
+        <li data-load="home">Home</li>
+        <li data-load="contact">Contact</li>
+        <li data-load="login">Log in</li>
+      </ul>
+    </nav>
+
+    <script>
+      ////
+      // basic handling
+      /////
+      const button1 = document.querySelector(".button1");
+      button1.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        console.group("Button 1");
+        console.log("Context is the element handling:", this);
+        console.log(
+          "currentTarget is element handling (same as this):",
+          e.currentTarget
+        );
+        console.log("Target is event source:", e.target);
+        console.log("Event object:", e);
+        console.groupEnd();
+      });
+
+      ////
+      // propagation
+      ////
+
+      const link1 = document.querySelector(".link1");
+      link1.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        console.group("Link 1");
+        console.log("Context is the element handling:", this);
+        console.log("currentTarget is element handling:", e.currentTarget);
+        console.log("Target is event source:", e.target);
+        console.log("Event object:", e);
+        console.groupEnd();
+      });
+
+      const p = document.querySelector("p");
+      p.addEventListener("click", function(e) {
+        console.group("Paragraph 1");
+        console.log("Context is the element handling:", this);
+        console.log("currentTarget is element handling:", e.currentTarget);
+        console.log("Target is event source:", e.target);
+        console.log("Event object:", e);
+        console.groupEnd();
+      });
+
+      ////
+      // delegation
+      ////
+      const ul = document.querySelector("nav ul");
+      ul.addEventListener("click", function(e) {
+        const linkToLoad = e.target.getAttribute("data-load");
+        document.title = linkToLoad;
+        console.group("UL");
+        console.log("Context is the element handling:", this);
+        console.log("currentTarget is element handling:", e.currentTarget);
+        console.log("Target is event source:", e.target);
+        console.log("Event object:", e);
+        console.groupEnd();
+
+        const newLi = document.createElement("li");
+        newLi.innerHTML = "New " + (ul.children.length + 1);
+        ul.appendChild(newLi);
+      });
+    </script>
+  </body>
+</html>

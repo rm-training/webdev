@@ -18,6 +18,20 @@ describe("Builder Exercise", function() {
     expect(toyota.getMake()).toBe("Toyota");
   });
 
+  it("Should not use the original object as the prototype", function() {
+    const configs = {
+      constructor: function(make) {
+        this.make = make;
+      },
+      getMake: function() {
+        return this.make;
+      }
+    };
+    let Car = Builder(configs);
+    let toyota = new Car();
+    expect(Object.getPrototypeOf(toyota) !== configs).toBeTruthy();
+  });
+
   it("Should support inheritance for the bonus exercise", function() {
     if (Builder.length > 1) {
       let a = Builder({
@@ -31,6 +45,7 @@ describe("Builder Exercise", function() {
       }, a);
 
       let obj = new b();
+
       expect(obj.hasOwnProperty("color")).toBe(false);
       expect(obj.hasOwnProperty("size")).toBe(false);
       expect(obj.color).toBe("red");

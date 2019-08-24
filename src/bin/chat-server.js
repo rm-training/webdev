@@ -4,6 +4,12 @@
  *
  * Interact with me:
  *
+ * Data format:
+  {
+		user: 'root',
+		message: '---Welcome---'
+	}
+ *
  * https://www.npmjs.com/package/ws
  * https://www.npmjs.com/package/ws#sending-and-receiving-text-data
  */
