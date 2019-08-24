@@ -18,6 +18,8 @@
  *   mul: Sums the stack then multiplies the sum by the calculator's value -- then empties the stack
  *   get: Returns the value of the current calculator value
  *
+ * BONUS -- Convert it to use the class keyword
+ *
  * Example usage:
  *
  *   let c = new Calculator(5);
@@ -35,7 +37,7 @@ function Calculator(value = 0) {
 
 Calculator.prototype.push = function (value) {
 	this.stack.push(value);
-}
+};
 
 Calculator.prototype.add = function () {
 	this.value += this.stack.reduce((total, current) => {
@@ -46,7 +48,7 @@ Calculator.prototype.add = function () {
 	this.stack = [];
 
 	return this.value;
-}
+};
 
 Calculator.prototype.mul = function () {
 	this.value *= this.stack.reduce((total, current) => {
@@ -57,11 +59,11 @@ Calculator.prototype.mul = function () {
 	this.stack = [];
 
 	return this.value;
-}
+};
 
 Calculator.prototype.get = function () {
 	return this.value;
-}
+};
 
 // converted to a class...
 

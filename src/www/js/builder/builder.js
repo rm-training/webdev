@@ -17,8 +17,54 @@
  * second argument's prototype property.  This allows one to easily
  * create a class that inherits from another class.
  */
-function Builder(properties) {
+// function Builder(properties) {
+//
+//     // making a new function to wrap the original (somewhat optional)
+//     const newConstructor = function (...args) {
+//         properties.constructor.apply(this, args);
+//     };
+//
+//     // but this will overwrite the new ^ constructor :/
+//     //newConstructor.prototype = properties;
+//
+//     for (let propName in properties) {
+//        if (propName !== 'constructor') {
+//             newConstructor.prototype[propName] = properties[propName];
+//        }
+//     }
+//
+//     return newConstructor;
+// }
 
-  // Your code here.
 
-}
+// ES2015+
+// function Builder({constructor, ...props}) {
+//     const newConstructor = function (...args) {
+//         constructor.apply(this, args);
+//     };
+//     newConstructor.prototype = {...props};
+//     return newConstructor;
+// }
+
+
+// Bonus:
+// function Builder(properties, parentConstructor) {
+//     const newConstructor = function (...args) {
+//         if (typeof constructor2 === 'function') {
+//             parentConstructor.apply(this);
+//         }
+//         properties.constructor.apply(this, args);
+//     };
+//
+//     if (typeof parentConstructor === 'function') {
+//         newConstructor.prototype = Object.create(parentConstructor.prototype);
+//     }
+//
+//     for (let propName in properties) {
+//         if (propName !== 'constructor') {
+//             newConstructor.prototype[propName] = properties[propName];
+//         }
+//     }
+//
+//     return newConstructor;
+// }
