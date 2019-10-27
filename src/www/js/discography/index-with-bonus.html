@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Discography App</title>
+</head>
+<body>
+    <!-- List of artists! -->
+    <artist-list>
+      <span slot="title">Artists</span>
+    </artist-list>
+
+    <!-- Write your templates here -->
+    <template id="artist-list-template">
+      <div>
+        <h1><slot name="title"></slot></h1>
+        <ul></ul>
+      </div>
+    </template>
+
+    <template id="artist-detail-template">
+      <div>
+        <h3><slot name="name">Artist Name</slot></h3>
+        <p>formed: <slot name="year">Artist Year</slot></p>
+      </div>
+    </template>
+
+  <!-- Bring in our JavaScript files -->
+  <script src="../ajax/ajax.js"></script>
+  <script src="components/show.js"></script>
+  <script src="components/index.js"></script>
+  <script src="components/chat.js"></script>
+</body>
+</html>

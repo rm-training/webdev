@@ -18,8 +18,16 @@
       </div>
     </template>
 
-    <!-- Bring in our JavaScript files -->
-    <script src="../ajax/ajax.js"></script>
-    <script src="components/index.js"></script>
+    <template id="artist-detail-template">
+      <div>
+        <h3><slot name="name">Artist Name</slot></h3>
+        <p>formed: <slot name="year">Artist Year</slot></p>
+      </div>
+    </template>
+
+  <!-- Bring in our JavaScript files -->
+  <script src="../ajax/ajax.js"></script>
+  <script src="components/show.js"></script>
+  <script src="components/index.js"></script>
 </body>
 </html>
