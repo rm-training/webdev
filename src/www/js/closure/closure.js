@@ -35,6 +35,11 @@ function closure() {
     // getTemp: function () {}
     getTemp() {
       return temps[temps.length - 1];
+    },
+    history() {
+      for (let i=temps.length; i--; i>=0) {
+        console.log(temps[i]);
+      }
     }
   }
 }
