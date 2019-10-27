@@ -30,7 +30,6 @@ class ChatBox extends HTMLElement {
 
     // create a text input field
     this.form = document.createElement("form");
-
     this.input = document.createElement("input");
 
     // create a submit button
@@ -87,17 +86,17 @@ class ChatBox extends HTMLElement {
 
     const connection = new WebSocket("ws://" + host);
 
-    connection.onopen = () => {
+    connection.addEventListener('open', () => {
       console.log("connected");
 
       this.emptyMessages();
       this.renderFromStore();
-    };
+    });
 
-    connection.onmessage = message => {
+    connection.addEventListener('message', message => {
       const data = JSON.parse(message.data);
       this.addMessage(data);
-    };
+    });
 
     this.form.addEventListener("submit", e => {
       e.preventDefault();

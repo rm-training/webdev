@@ -16,18 +16,18 @@
 //            the setTemp function.
 //
 function closure() {
-
   let temps = [];
 
   return {
+    // setTemp: function (temp) {}
     setTemp(temp) {
       if (temp >= 0 && temp <= 100) {
         temps.push(temp);
       }
     },
+    // getTemp: function () {}
     getTemp() {
       return temps[temps.length - 1];
     }
   }
-
 }

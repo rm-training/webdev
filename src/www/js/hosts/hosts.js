@@ -47,7 +47,7 @@
  *
  * Make sure your tests still pass.
  */
-Hosts = (function () {
+const Hosts = (function () {
   let hosts = {};
 
   return {
@@ -79,8 +79,7 @@ Hosts = (function () {
 })();
 
 /*
-Hosts = (function () {
-
+const Hosts = (function () {
   const hostMap = new Map();
 
   // private stuff...

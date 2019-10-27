@@ -55,13 +55,6 @@
  *
  *    https://developer.mozilla.org/en-US/docs/Web/API/Node
  *
- *
- * BONUS:
- *
- * Rewrite your solution.  This time instead of selecting each flag
- * individually, write a function that recursively walks the DOM tree
- * and moves the flags as they are found.  Don't forget to sort the
- * flags so they are in the correct order in the bucket.
  */
 
 const bucket = document.getElementById("bucket");
@@ -92,14 +85,21 @@ newLi = document.createElement("li");
 newLi.appendChild(flag5);
 bucketList.appendChild(newLi);
 
-// bonus?
-
+/**
+ * BONUS:
+ *
+ * Rewrite your solution.  This time instead of selecting each flag
+ * individually, write a function that recursively walks the DOM tree
+ * and moves the flags as they are found.  Don't forget to sort the
+ * flags so they are in the correct order in the bucket.
+ */
 const q = [];
 
 q.push(document);
 
 while (q.length) {
   const next = q.pop();
+
   Array.from(next.children).map(el => {
     if (el.innerText.match(/flag #/i)) {
       if (el.children.length) {

@@ -49,17 +49,17 @@ class MessageSystem {
     this.messagesUl = document.querySelector("#messages ul");
     this.messagesUl.innerHTML = "";
 
-    connection.onopen = () => {
+    connection.addEventListener('open', () => {
       console.log("connected");
 
       this.emptyMessages();
       this.renderFromStore();
-    };
+    });
 
-    connection.onmessage = event => {
-      const data = JSON.parse(event.data);
+    connection.addEventListener('message', e => {
+      const data = JSON.parse(e.data);
       this.addMessage(data);
-    };
+    });
 
     this.form.addEventListener("submit", e => {
       e.preventDefault();

@@ -20,12 +20,12 @@ Ajax = (function () {
       body: JSON.stringify(data)
     };
 
+    // without async/await
     // return fetch(url, options).then((response) => {
     //   return response.json();
     // });
 
     const response = await fetch(url, options);
-
     return response.json();
   };
 

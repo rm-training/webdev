@@ -26,11 +26,10 @@ class ChatBox extends HTMLElement {
 
     // create a ul
     this.messagesUl = document.createElement('ul');
-    this.messagesUl.innerHTML = 'loading...'
+    this.messagesUl.innerHTML = 'loading...';
 
     // create a text input field
     this.form = document.createElement('form');
-
     this.input = document.createElement('input');
 
     // create a submit button
@@ -84,20 +83,19 @@ class ChatBox extends HTMLElement {
   connectedCallback() {
     const host = this.getAttribute('data-host');
     const user = this.getAttribute('data-user');
-
     const connection = new WebSocket('ws://' + host);
 
-    connection.onopen = () => {
+    connection.addEventListener('open',  () => {
       console.log('connected');
 
       this.emptyMessages();
       this.renderFromStore();
-    }
+    });
 
-    connection.onmessage = (message) => {
+    connection.addEventListener('message', (message) => {
       const data = JSON.parse(message.data);
       this.addMessage(data);
-    }
+    });
 
     this.form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -110,9 +108,7 @@ class ChatBox extends HTMLElement {
       const messageString = JSON.stringify(message);
 
       connection.send(messageString);
-
       this.addMessage(message);
-
       this.input.value = '';
     });
   }

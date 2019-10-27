@@ -4,7 +4,7 @@
 <head>
   <title>Discography App</title>
 </head>
-
+<body>
     <!-- List of artists! -->
     <artist-list>
       <span slot="title">Artists</span>
@@ -13,7 +13,7 @@
     <!-- Write your templates here -->
     <template id="artist-list-template">
       <div>
-        <h1><slot name="title"></title>></h1>
+        <h1><slot name="title"></slot></h1>
         <ul></ul>
       </div>
     </template>
@@ -31,5 +31,4 @@
   <script src="components/index.js"></script>
   <script src="components/chat.js"></script>
 </body>
-
 </html>

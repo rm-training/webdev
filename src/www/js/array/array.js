@@ -17,16 +17,16 @@ let users = [
 // The function below should return an array of users from the TEST
 // DATA above that only includes users under the age of 18.
 function exercise1() {
-  var underAgeUsers = [];
+  let underAgeUsers = [];
 
-  for (var i = 0; i < users.length; i++) {
+  for (let i = 0; i < users.length; i++) {
     if (users[i].age < 18) {
       underAgeUsers.push(users[i]);
     }
   }
 
   // could also use ES5+ Array#filter
-  underAgeUsers = users.filter(function (val, index) {
+  /*underAgeUsers = users.filter(function (val, index) {
     return val.age < 18;
   });/**/
 
@@ -53,21 +53,21 @@ function exercise2() {
 // `toString()` method) from the TEST DATA above where the user is
 // over the age of 20 and younger than 40.
 function exercise3() {
-  // var usernames = [];
-  // for (var i = 0; i < users.length; i++) {
-  //   if (users[i].age > 20 && users[i].age < 40) {
-  //     usernames.push(users[i].id.toString());
-  //   }
-  // }
-  // return usernames;
+  const usernames = [];
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].age > 20 && users[i].age < 40) {
+      usernames.push(users[i].id.toString());
+    }
+  }
+  return usernames;
 
-  return users
-    .filter(function (val) {
-      return val.age < 40 && val.age > 20;
-    })
-    .map(function (val) {
-      return val.id.toString();
-    });
+  // return users
+  //   .filter(function (val) {
+  //     return val.age < 40 && val.age > 20;
+  //   })
+  //   .map(function (val) {
+  //     return val.id.toString();
+  //   });
 }
 
 /****************************************************************************/
@@ -76,11 +76,12 @@ function exercise3() {
 // The function below should return the `users' array from above (TEST
 // DATA) in reverse order.  Do not use the built-in reverse function.
 function exercise4() {
-  // var reversedArray = [];
-  // for (var i = 0; i < users.length; i++) {
-  //   reversedArray.unshift(users[i]);
-  // }
-  // return reversedArray;
+  const reversedArray = [];
+  for (let i = 0; i < users.length; i++) {
+    reversedArray.unshift(users[i]);
+  }
+  return reversedArray;
 
-  return users.slice().reverse();
+  // or...
+  //return users.slice().reverse();
 }
