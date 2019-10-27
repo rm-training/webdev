@@ -15,6 +15,13 @@
 //   getTemp: A function that returns the last temperature set by
 //            the setTemp function.
 //
+// Bonus:
+// add a new method, 'history()' that outputs all previous temperatures
+// with the latest temperature displayed first.
+//   setTemp(5);
+//   setTemp(10);
+//   history(); // 10, 5
+//
 function closure() {
   let temps = [];
 
