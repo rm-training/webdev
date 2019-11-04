@@ -2,42 +2,48 @@
 <html>
   <head>
     <title>Events Exercise</title>
+    <meta charset="utf8" />
     <link href="../core.css" rel="stylesheet" type="text/css"/>
-    <link href="/vendor/semantic-ui/semantic.css" type="text/css" />
+    <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body>
+  <body class="ui container">
     <div id="container">
-      <h1>Events Exercise</h1>
+      <h1 class="ui header">Events Exercise</h1>
 
-      <h2>Inside a List</h2>
-      <ul>
-        <li>
-          <button>Click Me</button>
-          <span>0</span>
-        </li>
-        <li>
-          <button>Click Me</button>
-          <span>0</span>
-        </li>
-      </ul>
+      <div class="ui segment">
+        <h2 class="ui dividing header">Inside a List</h2>
+
+        <ul class="ui link list">
+          <li>
+            <button class="ui button">Click Me</button>
+            <span class="ui green label">0</span>
+          </li>
+          <li>
+            <button class="ui button">Click Me</button>
+            <span class="ui green label">0</span>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <h2>Inside Paragraphs</h2>
-    <p>
-      <button>Click Me</button>
-      <span>0</span>
-    </p>
+    <div class="ui segment">
+      <h2 class="ui dividing header">Inside paragraphs</h2>
+      <p>
+        <button class="ui button">Click Me</button>
+        <span class="ui green label">0</span>
+      </p>
 
-    <p>
-      <span>Click Me</span>
-      <span>0</span>
-    </p>
+      <p>
+        <span class="ui button">Click Me</span>
+        <span class="ui green label">0</span>
+      </p>
 
-    <p>
-      <a href="http://www.google.com">Click Me</a>
-      <span>0</span>
-    </p>
+      <p>
+        <a  class="ui button" href="http://www.google.com">Click Me</a>
+        <span class="ui green label">0</span>
+      </p>
+    </div>
 
     <script src="events.js"></script>
   </body>

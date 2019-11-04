@@ -6,15 +6,8 @@ body{
   position:absolute;
   top:5px;
   right:5px;
-  border:2px solid #ccc;
-  border-radius:2px;
-  border-top:0;
-  background-color:#ececec;
+
   width:20%;
-  font-size:8px;
-}
-#bucket::before {
-  content:"Bucket";
 }
 
 #bucket a,
