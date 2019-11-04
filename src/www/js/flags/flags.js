@@ -61,9 +61,8 @@ const bucket = document.getElementById("bucket");
 const bucketList = bucket.querySelector("ul");
 
 const flag1 = document.querySelector(".main li.foo");
-let newLi = document.createElement("li");
-newLi.appendChild(flag1);
-bucketList.appendChild(newLi);
+// the flag is already an LI so we do not need to recreate it...
+bucketList.appendChild(flag1);
 
 const flag2 = document.querySelector("article a span");
 newLi = document.createElement("li");
