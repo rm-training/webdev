@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Chat Simple</title>
+    <meta charset="utf8" />
+    <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" />
 
     <style type="text/css">
       #messages {
@@ -26,19 +28,27 @@
     </style>
   </head>
 
-  <body>
+  <body class="ui container">
     <h1>Chat Simple</h1>
 
-    <form>
-      <input type="text" name="message" placeholder="Insert a message" />
-      <input type="submit" />
+    <form class="ui form">
+      <div class="ui input">
+        <input type="text" name="message" placeholder="Insert a message" />
+      </div>
+      <input class="ui primary button" type="submit" />
     </form>
-    <div id="messages">
-      <ul>
-        <li><strong>UserName</strong> said:</li>
-        <li><strong>UserName</strong> said:</li>
-        <li><strong>UserName</strong> said:</li>
-      </ul>
+    <div id="messages" class="ui comments">
+      <div class="comment">
+        <div class="content">
+          <a class="author">Matt</a>
+          <div class="metadata">
+            <span class="date">Today at 5:42PM</span>
+          </div>
+          <div class="text">
+            How artistic!
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Bring in our JavaScript files -->

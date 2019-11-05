@@ -2,13 +2,15 @@
 <html>
   <head>
     <title>Flag Exercise</title>
+    <meta charset="utf8" />
     <link href="../core.css" rel="stylesheet" type="text/css"/>
     <link href="index.css" rel="stylesheet" type="text/css"/>
+    <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body>
+  <body class="ui container">
     <div id="container">
-      <h1 class="foo">Find the flag elements.</h1>
+      <h1 class="foo ui dividing header">Find the flag elements.</h1>
 
       <div class="main">
         <h2 class="foo">List of Articles:</h2>
@@ -20,7 +22,7 @@
         </ul>
 
         <div id="articles" class="foo">
-          <article class="new">
+          <article class="new ui segment">
             <h3>Article 1</h3>
 
             <p>
@@ -33,12 +35,12 @@
             </p>
           </article>
 
-          <article class="new">
+          <article class="new ui segment">
             <h3>Article 2</h3>
             <p>This is some body content</p>
           </article>
 
-          <article id="article-3">
+          <article id="article-3" class="ui top attached segment">
             <h3>Article 3</h3>
             <p>This is some body content.</p>
             <p>This is some body content.</p>
@@ -46,7 +48,7 @@
             <p>This is some body content.</p>
           </article>
 
-          <div class="footer">
+          <div class="footer ui bottom attached segment">
             <div>
               <div>
                 <div></div>
@@ -60,8 +62,8 @@
         </div>
       </div>
 
-      <div id="bucket">
-        <h2>Dropped Flags:</h2>
+      <div id="bucket" class="ui raised blue segment">
+        <h1 class="ui header">The Bucket</h1>
         <ul>
           <!--
             Put the flags in here as <li> elements, in the correct

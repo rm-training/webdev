@@ -3,16 +3,18 @@
 
 <head>
   <title>Discography App</title>
+  <meta charset="utf8" />
+  <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body class="ui container">
     <!-- List of artists! -->
     <artist-list>
-      <span slot="title">Artists</span>
+      <span class="ui item" slot="title">Artists</span>
     </artist-list>
 
     <!-- Write your templates here -->
     <template id="artist-list-template">
-      <div>
+      <div class="segment">
         <h1><slot name="title"></slot></h1>
         <ul></ul>
       </div>
