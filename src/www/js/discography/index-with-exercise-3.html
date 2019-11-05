@@ -2,9 +2,11 @@
 <html>
 
 <head>
-  <title>Discography App</title>
+    <title>Discography App</title>
+    <meta charset="utf8" />
+    <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body class="ui container">
     <!-- List of artists! -->
     <artist-list>
       <span slot="title">Artists</span>
@@ -12,14 +14,14 @@
 
     <!-- Write your templates here -->
     <template id="artist-list-template">
-      <div>
+      <div class="ui segment">
         <h1><slot name="title"></slot></h1>
         <ul></ul>
       </div>
     </template>
 
     <template id="artist-detail-template">
-      <div>
+      <div class="ui segment">
         <h3><slot name="name">Artist Name</slot></h3>
         <p>formed: <slot name="year">Artist Year</slot></p>
       </div>

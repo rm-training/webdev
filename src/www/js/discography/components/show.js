@@ -15,6 +15,7 @@ class ArtistDetail extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
+
   // Bonus Exercise:
   //
   // Fetch all of the albums for artist and display them.
@@ -26,19 +27,31 @@ class ArtistDetail extends HTMLElement {
   // For an example, see: http://localhost:3000/js/demo/
   connectedCallback() {
     const modal = document.createElement("div");
-    modal.style.position = "fixed";
-    modal.style.top = "25%";
-    modal.style.left = "25%";
-    modal.style.width = "50vw";
-    modal.style.height = "50vh";
-    modal.style.border = "1px solid #000";
-    modal.style.display = "none";
-    modal.style.backgroundColor = "white";
-    modal.style.overflow = "scroll";
+    modal.classList.add('ui');
+    modal.classList.add('segment');
+    modal.classList.add('raised');
+    modal.classList.add('modal');
+    //
+    // modal.style.position = "fixed";
+    // modal.style.top = "25%";
+    // modal.style.left = "25%";
+    // modal.style.width = "50vw";
+    // modal.style.height = "50vh";
+    // modal.style.display = "none";
+    // modal.style.overflow = "scroll";
 
+    // styles don't penetrate a web component
+    // so if you want it to be styled like the outside page (ie: SemanticUI) we have to load those styles
+    // which is a bummer
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', '/vendor/semantic-ui/semantic.css');
+
+    this.shadowRoot.appendChild(stylesheet);
     this.shadowRoot.appendChild(modal);
 
     this.shadowRoot.firstElementChild.addEventListener("click", function() {
+      // @todo - how do I make this "id" dynamic? maybe use an attribute...
       fetch("/api/artists/1/albums")
         .then(response => {
           return response.json();
