@@ -13,7 +13,7 @@
  *
  *   * The `fetch' API: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
  */
-Ajax = (function () {
+const Ajax = (function () {
   let raw = async function (url, method, data) {
     const options = {
       method: method.toUpperCase(),
