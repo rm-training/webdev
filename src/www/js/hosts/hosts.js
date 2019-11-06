@@ -33,6 +33,12 @@
  *  - Look at the spec file for clarification of the requirements
  *    listed above.  The spec file is: hosts.spec.js
  *
+ *  - Consider how you want to store your data...
+ *  	* An Object?
+ *  	* An Array?
+ *  	* A Map()
+ *  		https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+ *
  *
  * Bonus Exercise:
  *
