@@ -17,35 +17,50 @@
  * second argument's prototype property.  This allows one to easily
  * create a class that inherits from another class.
  */
-// function Builder(properties) {
-//
-//     // making a new function to wrap the original (somewhat optional)
-//     const newConstructor = function (...args) {
-//         properties.constructor.apply(this, args);
-//     };
-//
-//     // but this will overwrite the new ^ constructor :/
-//     //newConstructor.prototype = properties;
-//
-//     for (let propName in properties) {
-//        if (propName !== 'constructor') {
-//             newConstructor.prototype[propName] = properties[propName];
-//        }
-//     }
-//
-//     return newConstructor;
-// }
 
+function Builder(properties) {
+  // caveat: we're referencing the original properties object here
+  // but we may want to actually clone the original so as to not allow
+  // future modifications to `properties` to affect the constructor here
+  const constructor = function(...args) {
+    properties.constructor.apply(this, args);
+  };
+
+  for (let prop in properties) {
+    // all enumerables...
+    if (properties.hasOwnProperty(prop) && prop !== "constructor") {
+      constructor.prototype[prop] = properties[prop];
+    }
+  }
+
+  return constructor;
+}
+
+// a bad example
+// it mutates the original `properties` object
+// function Builder(properties, parent) {
+//   var ctor = properties.constructor;
+//   delete properties.constructor;
+
+//   // and it uses the poorly performing 'setPrototypeOf'
+//   if (parent !== undefined) {
+//     // properties.__proto__ = parent.prototype;
+//     Object.setPrototypeOf(properties, parent.prototype);
+//   }
+
+//   ctor.prototype = properties;
+//   return ctor;
+// }
 
 // ES2015+
 // function Builder({constructor, ...props}) {
 //     const newConstructor = function (...args) {
 //         constructor.apply(this, args);
 //     };
+//     // @todo - still need to avoid copying "constructor"
 //     newConstructor.prototype = {...props};
 //     return newConstructor;
 // }
-
 
 // Bonus:
 // function Builder(properties, parentConstructor) {
@@ -61,7 +76,7 @@
 //     }
 //
 //     for (let propName in properties) {
-//         if (propName !== 'constructor') {
+//         if (properties.hasOwnProperty(prop) && propName !== 'constructor') {
 //             newConstructor.prototype[propName] = properties[propName];
 //         }
 //     }

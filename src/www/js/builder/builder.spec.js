@@ -39,10 +39,13 @@ describe("Builder Exercise", function() {
         color: "red"
       });
 
-      let b = Builder({
-        constructor: function() {},
-        size: 10
-      }, a);
+      let b = Builder(
+        {
+          constructor: function() {},
+          size: 10
+        },
+        a
+      );
 
       let obj = new b();
 
@@ -53,5 +56,21 @@ describe("Builder Exercise", function() {
     } else {
       expect(true).toBe(true);
     }
+  });
+
+  it("Should not mutate the original config object", function() {
+    const constructor = function(make) {
+      this.make = make;
+    };
+
+    const configs = {
+      constructor: constructor,
+      getMake: function() {
+        return this.make;
+      }
+    };
+    let Car = Builder(configs);
+    let toyota = new Car();
+    expect(configs.constructor).toEqual(constructor);
   });
 });
