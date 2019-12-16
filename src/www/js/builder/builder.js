@@ -9,6 +9,11 @@
  * The remaining properties in the object should become prototype
  * properties for the returned constructor function.
  *
+ * Tips & Warnings:
+ *  - don't mutate the provided `properties` object
+ *  - pay attention to "own" vs "all" properties of an object (use hasOwnProperty() or getOwnPropertyNames())
+ *  - you'll be controlling "context" (with call, apply, bind, etc)
+ *
  * BONUS: (if you have time)
  *
  * Change the `Builder' function so that it takes a second argument,
@@ -17,8 +22,3 @@
  * second argument's prototype property.  This allows one to easily
  * create a class that inherits from another class.
  */
-function Builder(properties) {
-
-  // Your code here.
-
-}
