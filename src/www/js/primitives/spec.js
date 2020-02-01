@@ -13,4 +13,13 @@ describe("Primitives Exercise", function() {
       expect(result.length).toBeGreaterThan(4);
     });
   });
+
+  describe("Exercise 3", function() {
+    it("Should return an array of at least 3 items", function() {
+      let result = exercise3();
+      expect(result).toBeDefined();
+      expect(typeof result).toBe("object");
+      expect(result.length).toBeGreaterThan(3);
+    });
+  });
 });
