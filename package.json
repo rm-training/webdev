@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/rm-training/webdev/issues"
   },
-  "homepage": "https://github.com/rm-training/webdev#readme"
+  "homepage": "https://github.com/rm-training/webdev#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {}
 }
