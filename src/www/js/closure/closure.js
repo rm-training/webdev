@@ -37,9 +37,9 @@ function closure() {
       return temps[temps.length - 1];
     },
     history() {
-      for (let i=temps.length; i--; i>=0) {
+      for (let i = temps.length; i--; i >= 0) {
         console.log(temps[i]);
       }
     }
-  }
+  };
 }

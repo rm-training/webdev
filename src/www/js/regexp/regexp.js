@@ -18,7 +18,15 @@
  *   "foo pi xx" -> "foo 3.14 xx 2"
  */
 function processString(input) {
+  let today = new Date().toDateString();
+  let output;
 
-  // Your code here.
+  output = input.replace(/today/gi, today);
+  output = output.replace(/pi/gi, Math.PI.toFixed(2));
 
-};
+  let xMatches = input.match(/x/gi);
+  xMatches = xMatches ? xMatches.length : 0;
+  output += " " + xMatches;
+
+  return output;
+}

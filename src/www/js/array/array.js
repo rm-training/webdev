@@ -8,7 +8,7 @@ let users = [
   { id: 1, username: "caiva", age: 30 },
   { id: 2, username: "ahxae", age: 17 },
   { id: 3, username: "i4tie", age: 42 },
-  { id: 4, username: "bvu7F", age: 19 },
+  { id: 4, username: "bvu7F", age: 19 }
 ];
 
 /****************************************************************************/
@@ -40,7 +40,7 @@ function exercise1() {
 // should be all of the usernames from the TEST DATA above, in the
 // same order.
 function exercise2() {
-  return users.map(function (val) {
+  return users.map(function(val) {
     return val.username;
   });
 }

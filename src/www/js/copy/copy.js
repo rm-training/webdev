@@ -8,7 +8,16 @@
  *
  */
 function copy(object) {
+  let newObject = {};
 
-  // Your code here.
+  for (let prop in object) {
+    if (object.hasOwnProperty(prop)) {
+      newObject[prop] = object[prop];
+    }
+  }
 
+  return newObject;
+
+  // the es6+ way...
+  //return Object.assign({}, object);
 }
