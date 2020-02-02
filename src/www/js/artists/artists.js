@@ -35,4 +35,54 @@
 //     /api/artists/N/albums
 //
 
-// your solution here
+const button = document.querySelector("button");
+const artistList = document.getElementById("artists");
+const details = document.getElementById("details");
+
+button.addEventListener("click", function(e) {
+  const button = e.target;
+
+  // Bonus #1
+  button.classList.add("loading");
+
+  // @todo - faking a delay...?
+
+  let req = new XMLHttpRequest();
+  req.addEventListener("load", function(e) {
+    // @todo - what about if the xhr request fails...?
+    button.classList.remove("loading");
+
+    if (req.status == 200) {
+      const artists = JSON.parse(req.responseText);
+
+      for (let i = 0; i < artists.length; i++) {
+        let newLi = document.createElement("li");
+        newLi.innerHTML = artists[i].name;
+        artistList.appendChild(newLi);
+
+        // Bonus #2...
+        newLi.dataset.id = artists[i].id;
+        newLi.addEventListener("click", artistLiClickHandler);
+      }
+    }
+  });
+
+  req.open("GET", "/api/artists");
+  req.send(null);
+});
+
+function artistLiClickHandler(e) {
+  let artistId = e.target.dataset.id;
+
+  let req = new XMLHttpRequest();
+  req.addEventListener("load", function(e) {
+    if (req.status == 200) {
+      const artist = JSON.parse(req.responseText);
+
+      details.innerHTML = `<h2>Formed in ${artist.formation_year}</h2>`;
+    }
+  });
+
+  req.open("GET", `/api/artists/${artistId}`);
+  req.send(null);
+}
