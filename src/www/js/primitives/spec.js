@@ -22,4 +22,36 @@ describe("Primitives Exercise", function() {
       expect(result.length).toBeGreaterThan(3);
     });
   });
+
+  describe("Exercise 4", function() {
+    it("Should return the string with ** on either side", function() {
+      let result = exercise4("hello");
+      expect(result).toBeDefined();
+      expect(typeof result).toBe("string");
+      expect(result).toEqual("**hello**");
+    });
+  });
+
+  describe("Exercise 5", function() {
+    it("Should return a function", function() {
+      let result = exercise5(5);
+      expect(result).toBeDefined();
+      expect(typeof result).toBe("function");
+    });
+
+    it("Should add 10 onto the given value", function() {
+      let result = exercise5(5);
+      expect(result()).toEqual(15);
+
+      result = exercise5(12);
+      expect(result()).toEqual(22);
+
+      result = exercise5(0);
+      expect(result()).toEqual(10);
+
+      // TEST for BONUS
+      result = exercise5();
+      expect(result()).toEqual(10);
+    });
+  });
 });
