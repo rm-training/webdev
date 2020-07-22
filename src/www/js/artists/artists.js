@@ -10,7 +10,6 @@
 // ID of "artists").  Display the name of each artist inside the newly
 // created <li> elements.
 //
-//
 // BONUS #1:
 //
 // We want to display a loading indicator when the user clicks the button.

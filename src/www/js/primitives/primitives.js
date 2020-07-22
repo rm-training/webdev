@@ -9,8 +9,9 @@ function exercise1() {
   return 1 + 2;
 }
 
-/******************************************************************************/
-// EXERCISE 2: Create (and return) a string with at least 5 characters
+/**
+ * EXERCISE 2: Create (and return) a string with at least 5 characters
+ */
 function exercise2() {
   return "hello";
 }
