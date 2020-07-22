@@ -1,0 +1,234 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <title>WebDev</title>
+  <meta charset="utf8" />
+  <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ui container">
+    <h1>Web Components Demo Page</h1>
+
+    <!-- usage: a custom element -->
+    <h2>Rainbow buttons...</h2>
+
+    <rainbow-button>Click me!</rainbow-button>
+
+    <template id="rainbow-button-template">
+        <h1>My Rainbow Button</h1>
+    </template>
+
+    <hr>
+    
+    <h2>Cabinet Buttons...</h2>
+    
+    <template id="cabinet-button-template">
+        <!-- external style sheets don't pass through :( -->
+        <!-- <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" /> -->
+        <div class="ui segment">
+          <h2 class="ui header">Cabinet:</h2>
+          <button>
+            🗄️<slot id="the-slot" name="button-label">TBD</slot>🗄️
+          </button>
+        </div>
+    </template>
+
+    <cabinet-button>
+      <span id="the-span" slot="button-label">Click me!</span>
+    </cabinet-button>
+    <!-- -->
+
+    <script type="text/javascript">
+
+      // Step 1:
+      // Add a class & register the custom element
+      class RainbowButton extends HTMLElement {
+          constructor() {
+              super();
+              const originalTextContent = this.textContent;
+              this.textContent = `🌈${originalTextContent}🌈`;
+
+
+              // Step 2:
+              // Switching it up for a Shadow DOM
+              /*this.attachShadow({mode: 'open'});
+
+              const el = document.createElement('p');
+              el.textContent = `🌈 ${originalTextContent}🌈 `;
+              this.shadowRoot.appendChild(el);
+              /**/
+
+              // Step 3:
+              // Fiddling with events
+              /*el.addEventListener('click', (e) => {
+                // notice the event is from <rainbow-button>, not the <p> inside it...
+                console.group('Internal click handler on internal <p>');
+                console.log('target:', e.target);
+                console.log('currentTarget:', e.currentTarget);
+                console.log('composed path:', e.composedPath());
+                console.groupEnd();
+              });/***/
+          }
+
+          // static get observedAttributes() {
+          //   return ['button-type', 'class'];
+          // }
+
+          // attributeChangedCallback(attrName, oldValue, newValue) {
+          //   console.log(attrName, oldValue, newValue);
+          // }
+      }
+
+      customElements.define('rainbow-button', RainbowButton);
+    </script>
+
+    <script type="text/javascript">
+
+      /* Using templates 
+      class CabinetButton extends HTMLElement {
+          constructor() {
+              super();
+              const originalTextContent = this.textContent;
+
+              this.attachShadow({mode: 'open'});
+
+              const tmpl = document.getElementById('cabinet-button-template');
+              const parentNode = tmpl.content.cloneNode(true);
+
+              this.shadowRoot.appendChild(parentNode);
+
+              this.shadowRoot.querySelectorAll('slot').forEach(el => {
+                el.addEventListener('click', (e) => {
+                  console.log('Slot', e.target);
+                })
+              });
+          }
+      }
+
+      document.querySelectorAll('span').forEach(el => {
+        el.addEventListener('click', e => {
+          console.log('span', e.target, e.target.parentNode);
+        })
+      })
+
+      customElements.define('cabinet-button', CabinetButton);
+      /**/
+
+    </script>
+
+
+    <joke-machine>
+      <div class="ui header" slot="title">Magical Jokes</h1>
+    </joke-machine>
+
+    <template id="joke-machine-template">
+      <link href="/vendor/semantic-ui/semantic.css" rel="stylesheet" type="text/css" />
+
+      <div class="ui segment">
+        <slot name="title"></slot>
+        <div id="joke"></div>
+        <button>New Joke</button>
+      </div>
+    </template>
+
+
+  <script type="text/javascript">
+
+      /**
+       * Returns a random integer up to but not including the max
+       */
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+
+      /**
+       * Create a "joke-machine" Web Component
+       *
+       * Our <joke-machine> element will render out a random
+       * joke from an internal list of 3-5 jokes
+       *
+       * Need joke ideas? See https://icanhazdadjoke.com/
+       *
+       * 
+       */
+
+       // 2) Complete the JokeMachine Web Component Class so that a random joke is inserted into the custom elements "innerText"
+       // 1) Insert the element into the page
+       // Switch to using a Shadow DOM (instead of inner Text) and <p> tag to contain the joke
+       // 3) Create a <template> to use, perhaps wrapping the joke with a <div class="ui segment"> and an <h1 class="ui header"> title. 
+       // allow the user of the component to customize the title elemnent with a <slot>
+       // Add a <button> and a click handler so that when clicked, the joke switches
+       // Put the event handler in the 'connectedCallback' and de-register it in the 'disconnectedCallback'
+       // Bonus: Fetch random jokes from the 'icanhazdadjoke' API!
+       // Style it - notice the styles from outside aren't used inside... you can use a <link>
+
+
+      class JokeMachine extends HTMLElement {
+          constructor() {
+              super();
+
+              this.attachShadow({mode: 'open'});
+
+              this.jokes = [
+                'You know what they say about cliffhangers...',
+                'Why did the coffee file a police report? It got mugged.',
+                'I saw a documentary on TV last night about how they put ships together. It was rivetting.'
+              ];
+
+              this.currentJokeIndex = getRandomInt(3);
+
+
+
+              // fetch('https://icanhazdadjoke.com/slack').then(response => {
+              //   console.log(response);
+              //   return response.json();
+              // }).then(data => {
+              //   console.log(data);
+              // });
+
+              const tmpl = document.getElementById('joke-machine-template');
+
+              this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
+
+              this.shadowRoot.getElementById('joke').innerText = this.jokes[this.currentJokeIndex];
+
+              
+
+              // this.shadowRoot.querySelector('.toggle').addEventListener('click', e => {
+              //   e.target.classList.add('right');
+              // })
+          }
+
+          
+
+          connectedCallback() {
+            this.handler = (e) => {
+              let newRand = getRandomInt(3);
+              do{
+                newRand = getRandomInt(3);
+              } while (newRand === this.currentJokeIndex);
+
+              this.currentJokeIndex = newRand;
+
+              this.shadowRoot.getElementById('joke').innerText = this.jokes[this.currentJokeIndex];
+            }
+
+            this.shadowRoot.querySelector('button').addEventListener('click', this.handler);
+          }
+
+          disconnectedCallback() {
+            if (typeof this.handler === 'function') {
+              this.shadowRoot.querySelector('button').removeEventListener('click', this.handler);
+            }
+          }
+      }
+
+      customElements.define('joke-machine', JokeMachine);
+      /**/
+
+    </script>
+
+
+</body>
+</html>
