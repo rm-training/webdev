@@ -17,9 +17,9 @@
   "use strict";
 
   var port = 3000,
-      www  = "./www",
-      data = "./data";
+      www  = "./src/www",
+      data = "./src/data";
 
-  var mockapie = require('../node_modules/mockapie/lib/mockapie');
+  var mockapie = require('mockapie');
   mockapie.createServer(port, www, data);
 })();
