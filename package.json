@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "cd src && babel babel --out-dir babel-out --presets=@babel/env",
+    "babel": "babel src/babel --out-dir babel-out --presets=@babel/env",
     "chat": "node src/bin/chat-server.js",
     "start": "node src/bin/server.js"
   },
