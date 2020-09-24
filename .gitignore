@@ -6,3 +6,4 @@ src/www/js/alternatives/typescript/**/*.js
 /src/babel-out/
 *.DS_Store
 *.idea
+babel-out

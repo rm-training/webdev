@@ -5,9 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd src && npm start",
-    "install": "cd src && npm install",
-    "chat": "cd src && node bin/chat-server.js"
+    "babel": "babel src/babel --out-dir babel-out --presets=@babel/env",
+    "chat": "node src/bin/chat-server.js",
+    "start": "node src/bin/server.js"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-decorators": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "mockapie": "git://github.com/pjones/mockapie.git",
+    "ws": "^6.1.3"
   },
   "repository": {
     "type": "git",
