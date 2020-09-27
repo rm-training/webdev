@@ -19,7 +19,7 @@ describe("Primitives Exercise", function() {
       let result = exercise3();
       expect(result).toBeDefined();
       expect(typeof result).toBe("object");
-      expect(result.length).toBeGreaterThan(3);
+      expect(result.length).toBeGreaterThanOrEqual(3);
     });
   });
 

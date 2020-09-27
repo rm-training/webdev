@@ -1,5 +1,5 @@
 describe("Array Exercises", function() {
-  let usersCopy = [].concat(users);
+  let usersCopy = [...users]; // [].concat(users);
 
   describe("Exercise 1", function() {
     it("Should return an array with one element", function() {
@@ -13,6 +13,10 @@ describe("Array Exercises", function() {
       expect(result[0].age).toBe(17);
       expect(result[0].username).toBe("ahxae");
     });
+    it("Should not mutate global users", function() {
+      let result = exercise1();
+      expect(users).toEqual(usersCopy);
+    });
   });
 
   describe("Exercise 2", function() {
@@ -21,6 +25,10 @@ describe("Array Exercises", function() {
       expect(Array.isArray(result)).toBe(true);
       expect(result.length).toBe(4);
       expect(result).toEqual(["caiva", "ahxae", "i4tie", "bvu7F"]);
+    });
+    it("Should not mutate global users", function() {
+      let result = exercise2();
+      expect(users).toEqual(usersCopy);
     });
   });
 
@@ -32,6 +40,9 @@ describe("Array Exercises", function() {
         expect(Array.isArray(result)).toBe(true);
         expect(result.length).toBe(1);
         expect(result[0]).toBe("1");
+      });
+      it("Should not mutate global users", function() {
+        expect(users).toEqual(usersCopy);
       });
     }
   });
@@ -45,6 +56,9 @@ describe("Array Exercises", function() {
         expect(Array.isArray(result)).toBe(true);
         expect(result.length).toBe(4);
         expect(result).toEqual(reversed);
+      });
+      it("Should not mutate global users", function() {
+        expect(users).toEqual(usersCopy);
       });
     }
   });
